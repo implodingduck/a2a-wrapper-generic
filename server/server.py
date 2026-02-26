@@ -1,3 +1,4 @@
+import logging
 import os
 import uvicorn
 
@@ -18,6 +19,12 @@ from a2a.types import (
 from .agent_executor import (
     create_generic_agent_executor,  # type: ignore[import-untyped]
 )
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 
 class APIKeyAuthMiddleware(BaseHTTPMiddleware):

@@ -13,7 +13,10 @@ from a2a.utils.constants import (
     AGENT_CARD_WELL_KNOWN_PATH,
     EXTENDED_AGENT_CARD_PATH,
 )
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 async def main() -> None:
     # Configure logging to show INFO level messages
@@ -22,7 +25,7 @@ async def main() -> None:
 
     # --8<-- [start:A2ACardResolver]
 
-    base_url = 'http://localhost:8000'
+    base_url = os.getenv('BASE_URL')
 
     async with httpx.AsyncClient() as httpx_client:
         # Initialize A2ACardResolver
@@ -99,7 +102,7 @@ async def main() -> None:
             ) from e
 
         # set x-api-key header for all requests from this client
-        httpx_client.headers.update({'X-API-Key': '123'})
+        httpx_client.headers.update({'X-API-Key': os.getenv('API_KEY')})
         # --8<-- [start:send_message]
         config = ClientConfig(httpx_client=httpx_client)
         factory = ClientFactory(config)

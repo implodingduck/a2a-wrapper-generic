@@ -41,6 +41,8 @@ class BaseAgent():
     async def run_conversation(self, thread_id: str, user_message: str) -> list[str]:
         # For demo purposes, just echo the message back with a prefix
         response = f'Agent response to: {user_message}'
+        logging.info(f'Agent received message: {user_message} in thread {thread_id}')
+        logging.info(f'Agent responding with: {response} in thread {thread_id}')
         self.threads[thread_id].messages.append(user_message)
         self.threads[thread_id].messages.append(response)
         return self.threads[thread_id].messages
