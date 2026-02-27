@@ -35,6 +35,8 @@ class APIKeyAuthMiddleware(BaseHTTPMiddleware):
         self.api_key = api_key
     
     async def dispatch(self, request: Request, call_next):
+        logger.info(f"Incoming request: {request.method} {request.url.path}")
+        logger.info(f"Incoming headers: {request.headers}")
         # Allow access to the agent card endpoints without authentication
         if (request.url.path == "/.well-known/agent-card.json" and request.method == "GET"):
             return await call_next(request)

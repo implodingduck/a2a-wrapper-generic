@@ -26,7 +26,7 @@ logger.setLevel(logging.DEBUG)
 class GenericThread():
     def __init__(self):
         self.id = uuid.uuid4()
-        self.messages = []  # List of (user_message, agent_response) tuples
+        self.messages = []
 
 class BaseAgent():
 
